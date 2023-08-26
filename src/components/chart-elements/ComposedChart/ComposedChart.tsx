@@ -128,6 +128,32 @@ const ComposedChart = React.forwardRef<HTMLDivElement, ComposedChartProps>((prop
                 relative ? (value: number) => `${(value * 100).toString()} %` : valueFormatter
               }
               allowDecimals={allowDecimals}
+              yAxisId="Bar"
+            />
+            <YAxis
+              width={yAxisWidth}
+              hide={!showYAxis}
+              axisLine={false}
+              tickLine={false}
+              type="number"
+              domain={yAxisDomain as AxisDomain}
+              tick={{ transform: "translate(-3, 0)" }}
+              fill=""
+              stroke=""
+              className={tremorTwMerge(
+                // common
+                "text-tremor-label",
+                // light
+                "fill-tremor-content",
+                // dark
+                "dark:fill-dark-tremor-content",
+              )}
+              tickFormatter={
+                relative ? (value: number) => `${(value * 100).toString()} %` : valueFormatter
+              }
+              allowDecimals={allowDecimals}
+              yAxisId="Line"
+              orientation="right"
             />
             {showTooltip ? (
               <Tooltip
@@ -156,13 +182,14 @@ const ComposedChart = React.forwardRef<HTMLDivElement, ComposedChartProps>((prop
             ) : null}
             {categories.map((category) => (
               <Bar
+                yAxisId="Bar"
                 className={
                   getColorClassNames(
                     categoryColors.get(category) ?? BaseColors.Gray,
                     colorPalette.background,
                   ).fillColor
                 }
-                key={category}
+                key={`${category}Bar`}
                 name={category}
                 type="linear"
                 stackId={stack || relative ? "a" : undefined}
@@ -174,6 +201,7 @@ const ComposedChart = React.forwardRef<HTMLDivElement, ComposedChartProps>((prop
             ))}
             {categories.map((category) => (
               <Line
+                yAxisId="Line"
                 className={
                   getColorClassNames(
                     categoryColors.get(category) ?? BaseColors.Gray,
@@ -190,7 +218,7 @@ const ComposedChart = React.forwardRef<HTMLDivElement, ComposedChartProps>((prop
                   ),
                 }}
                 dot={false}
-                key={category}
+                key={`${category}Line`}
                 name={category}
                 type={curveType}
                 dataKey={category}
