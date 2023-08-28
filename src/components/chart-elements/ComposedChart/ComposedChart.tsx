@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import { colorPalette, getColorClassNames, tremorTwMerge } from "lib";
 
 import {
-  Bar,
   CartesianGrid,
   Line,
+  Bar,
   Legend,
-  BarChart as ReChartsBarChart,
   ComposedChart as ReChartsComposedChart,
   ResponsiveContainer,
   Tooltip,
@@ -26,7 +25,6 @@ import { CurveType } from "../../../lib/inputTypes";
 import { BaseColors, defaultValueFormatter, themeColorRange } from "lib";
 
 export interface ComposedChartProps extends BaseChartProps {
-  layout?: "vertical" | "horizontal";
   stack?: boolean;
   relative?: boolean;
   curveType?: CurveType;
@@ -40,7 +38,6 @@ const ComposedChart = React.forwardRef<HTMLDivElement, ComposedChartProps>((prop
     index,
     colors = themeColorRange,
     valueFormatter = defaultValueFormatter,
-    layout = "horizontal",
     stack = false,
     relative = false,
     startEndOnly = false,
@@ -83,8 +80,7 @@ const ComposedChart = React.forwardRef<HTMLDivElement, ComposedChartProps>((prop
                   "dark:stroke-dark-tremor-content-subtle",
                 )}
                 strokeDasharray="3 3"
-                horizontal={layout !== "vertical"}
-                vertical={layout === "vertical"}
+                vertical={false}
               />
             ) : null}
             <XAxis

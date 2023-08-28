@@ -57,26 +57,10 @@ WithRelative.args = {
   relative: true,
 };
 
-export const WithLayoutVertical = ResponsiveTemplate.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-WithLayoutVertical.args = {
-  ...args,
-  data,
-  layout: "vertical",
-};
-
 export const WithAutoMinValue = ResponsiveTemplate.bind({});
 WithAutoMinValue.args = {
   ...args,
   data,
-  autoMinValue: true,
-};
-
-export const WithAutoMinValueAndLayoutVertical = ResponsiveTemplate.bind({});
-WithAutoMinValueAndLayoutVertical.args = {
-  ...args,
-  data,
-  layout: "vertical",
   autoMinValue: true,
 };
 
